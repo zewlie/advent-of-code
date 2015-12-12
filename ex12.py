@@ -11,13 +11,15 @@ def sum_nums(json):
     num = ''
 
     for char in json:
-        if char.isdigit() and len(num) == 0:
+        if char.isdigit() or char =='-' and len(num) == 0:
             num = char
-        elif char.isdigit():
+        elif char.isdigit() or char =='-':
             num = num + char
         else:
-            if len(num) > 0:
-                num_list.append(num)
-                num = ''
+            if len(num) > 0 and num != '-':
+                num_list.append(int(num))
+            elif len(num) > 1:
+                num_list.append(int(num))
+            num = ''
 
-    return num_list
+    return sum(num_list)
