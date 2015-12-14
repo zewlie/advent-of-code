@@ -10,16 +10,15 @@ def sum_nums(json):
     num_list = []
     num = ''
 
-    for char in json:
+    for i, char in enumerate(json):
+        if i < len(json) - 2:
+            if json[i:i+3] == 'red':
+                print json[i:i+3], 'matched red'
         if char.isdigit() or char =='-' and len(num) == 0:
-            num = char
-        elif char.isdigit() or char =='-':
             num = num + char
-        else:
-            if len(num) > 0 and num != '-':
-                num_list.append(int(num))
-            elif len(num) > 1:
-                num_list.append(int(num))
+        elif len(num) > 1 or len(num) > 0 and num != '-':
+            num_list.append(int(num))
             num = ''
 
+    # return sum(num_list)
     return sum(num_list)
